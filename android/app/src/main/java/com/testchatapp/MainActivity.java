@@ -1,3 +1,6 @@
+import android.os.Bundle;
+
+
 package com.testchatapp;
 
 import com.facebook.react.ReactActivity;
@@ -12,4 +15,8 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "TestChatApp";
   }
+}
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(null);
 }
