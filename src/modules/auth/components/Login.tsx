@@ -1,5 +1,7 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useState, useContext} from 'react';
 import {Text, View, StyleSheet, TextInput, Button, Alert} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {AuthContext} from '../context/auth-context';
 
 type Props = {
   navigation: any;
@@ -8,21 +10,21 @@ type Props = {
 export const Login: FC<Props> = ({navigation}) => {
   const [user, setUser] = useState('');
 
+  const autorization = () => {
+    navigation.navigate('Home', {user: user});
+  };
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         <TextInput
+          placeholder="enter your name..."
           keyboardType="numeric"
           style={styles.input}
           value={user}
           onChangeText={text => setUser(text)}
         />
-        <Button
-          title="Login"
-          onPress={() => navigation.navigate('Home', {user: user})}
-        />
+        <Button title="Login" onPress={autorization} />
       </View>
-      <Button title="Back" onPress={() => navigation.goBack()} />
     </View>
   );
 };
@@ -36,8 +38,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   input: {
-    borderBottomWidth: 2,
-    height: 25,
+    borderWidth: 1,
+    height: 35,
     flex: 1,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    fontSize: 15,
+    borderRadius: 10,
+    borderColor: '#2427',
   },
 });
