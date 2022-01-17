@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,10 +6,14 @@ import {
   TouchableOpacity,
   ScrollView,
   Button,
+  Image,
 } from 'react-native';
 import {TasksList} from '../../components/tasks-list';
 
 export const HomePage = ({navigation, route}: any) => {
+  useEffect(() => {}, []);
+  const name = route.params.user;
+  console.log('name', name);
   return (
     <View style={styles.container}>
       <View
@@ -19,10 +23,10 @@ export const HomePage = ({navigation, route}: any) => {
           alignItems: 'center',
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{marginRight: 10}}>Welcom home:</Text>
-          <Text style={{fontWeight: '600', fontSize: 20}}>
-            {route.params.user}
+          <Text style={{marginRight: 10}}>
+            Welcom home: {name ? name : 'Users'}
           </Text>
+          <Text style={{fontWeight: '600', fontSize: 20}}></Text>
         </View>
         <TouchableOpacity
           style={styles.backBtn}
@@ -32,6 +36,7 @@ export const HomePage = ({navigation, route}: any) => {
       </View>
 
       <TasksList />
+      <Button title="Enter" onPress={() => navigation.navigate('FullTask')} />
     </View>
   );
 };

@@ -1,6 +1,7 @@
 import React, {FC, useState, useContext} from 'react';
 import {Text, View, StyleSheet, TextInput, Button, Alert} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {InputText} from '../../../shared/components/inputText';
 import {AuthContext} from '../context/auth-context';
 
 type Props = {
@@ -12,17 +13,22 @@ export const Login: FC<Props> = ({navigation}) => {
 
   const autorization = () => {
     navigation.navigate('Home', {user: user});
+    setUser('');
+  };
+  const onChange = (text: string) => {
+    setUser(text);
   };
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <TextInput
-          placeholder="enter your name..."
-          keyboardType="numeric"
-          style={styles.input}
+        <InputText
           value={user}
-          onChangeText={text => setUser(text)}
+          placeholder="enter your name ..."
+          onChange={onChange}
+          keyboardType={'default'}
+          style={styles.input}
         />
+
         <Button title="Login" onPress={autorization} />
       </View>
     </View>
