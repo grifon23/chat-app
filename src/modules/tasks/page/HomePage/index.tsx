@@ -12,8 +12,7 @@ import {TasksList} from '../../components/tasks-list';
 
 export const HomePage = ({navigation, route}: any) => {
   useEffect(() => {}, []);
-  const name = route.params.user;
-  console.log('name', name);
+
   return (
     <View style={styles.container}>
       <View
@@ -23,9 +22,6 @@ export const HomePage = ({navigation, route}: any) => {
           alignItems: 'center',
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{marginRight: 10}}>
-            Welcom home: {name ? name : 'Users'}
-          </Text>
           <Text style={{fontWeight: '600', fontSize: 20}}></Text>
         </View>
         <TouchableOpacity
