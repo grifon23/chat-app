@@ -9,7 +9,16 @@ export const CreateCard: FC<IProps> = ({addCards}) => {
     title: '',
     description: '',
   });
+  const createCard = (val: {title: string; description: string}) => {
+    if (val.title && val.description !== '') {
+      addCards(val);
+    }
 
+    setValue({
+      title: '',
+      description: '',
+    });
+  };
   return (
     <View
       style={{
@@ -30,24 +39,31 @@ export const CreateCard: FC<IProps> = ({addCards}) => {
           onChangeText={text => setValue({...value, description: text})}
         />
 
-        <Button
-          color={'#FF3378'}
-          onPress={() => {
-            addCards(value);
-          }}
-          title="Добавить"
-        />
+        <View
+          style={{
+            backgroundColor: '#FF3378',
+            paddingVertical: 10,
+            borderRadius: 20,
+            marginTop: 50,
+          }}>
+          <Button
+            color={'#FFFFFF'}
+            onPress={() => {
+              createCard(value);
+            }}
+            title="Добавить"
+          />
+        </View>
       </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(28, 32, 46, 0.08)',
     paddingHorizontal: 10,
     borderRadius: 10,
     flexDirection: 'column',
-    marginTop: 200,
+    marginTop: 30,
   },
   input: {
     borderBottomWidth: 1,
